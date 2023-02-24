@@ -1,0 +1,19 @@
+Here's a description of a three server web infrastructure with specific details:
+
+The infrastructure consists of three servers: two web servers and one database server. The web servers are configured in a load-balanced setup using a round-robin algorithm to distribute incoming requests evenly across both servers. The load balancer is also configured to enable an active-active setup, meaning that both servers are actively serving requests simultaneously, increasing performance and redundancy.
+
+The database server is configured as a primary-replica cluster, also known as a master-slave setup. The primary node is the active node that receives and processes write requests, while the replica node is a passive node that receives copies of the data from the primary node and can be used to serve read requests. The replication process keeps the data consistent between the primary and replica nodes.
+
+The addition of the load balancer and the replica node to the database server were made to improve performance and reliability. The load balancer distributes incoming requests across both web servers, ensuring that no single server becomes overwhelmed with traffic. The replica node on the database server provides redundancy and improves read performance by allowing read requests to be served from the replica node rather than the primary node.
+
+The load balancer is configured with a round-robin algorithm, which distributes incoming requests in a rotating manner between the two web servers. This ensures that incoming requests are balanced evenly between the servers, preventing any single server from becoming overloaded. The active-active setup means that both web servers are actively serving requests simultaneously, improving performance and redundancy.
+
+The primary-replica database cluster works by replicating data from the primary node to the replica node. The primary node is the active node that receives and processes write requests, while the replica node is a passive node that receives copies of the data from the primary node and can be used to serve read requests. The replication process keeps the data consistent between the primary and replica nodes, ensuring that any changes made on the primary node are reflected on the replica node.
+
+The primary node and replica node have different roles in the application. The primary node is responsible for processing write requests, while the replica node is used to serve read requests. The replica node can also be used as a backup in case the primary node fails, ensuring that data remains available even in the event of a failure.
+
+Some potential issues with this infrastructure include:
+
+Single point of failure (SPOF): While the addition of the load balancer and the replica node on the database server provide some redundancy, there is still a risk of a single point of failure. If the load balancer or the database server were to fail, the entire website would be affected. To mitigate this risk, additional redundancy could be added, such as using multiple load balancers or setting up a geo-redundant database cluster.
+Security issues: The infrastructure does not include a firewall or HTTPS, leaving it vulnerable to attacks such as DDoS or man-in-the-middle attacks. To address these security concerns, a firewall could be implemented to restrict incoming traffic, and HTTPS could be enabled to encrypt communications between the web server and clients.
+Lack of monitoring: The infrastructure does not include any monitoring tools or processes, making it difficult to identify and resolve issues. Implementing monitoring tools such as logging and alerts can help to identify and resolve issues quickly, minimizing downtime and improving overall reliability.
