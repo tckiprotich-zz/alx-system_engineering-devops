@@ -18,3 +18,10 @@ A database is a structured collection of data that is used to store and organize
 
 ## What is the server using to communicate with the computer of the user requesting the website?
 The server is using the HTTP (Hypertext Transfer Protocol) to communicate with the computer of the user requesting the website. When the user requests a web page, the server responds with an HTTP response containing the requested content. The browser on the user's computer then renders the content for display.
+
+## Single point of failure (SPOF)
+Single point of failure (SPOF): This infrastructure relies on a single web server to handle all incoming requests. If the web server fails or goes offline, the entire website becomes unavailable. To mitigate this risk, it's recommended to set up redundant servers or use load balancing to distribute incoming traffic across multiple servers.
+
+Downtime during maintenance: If maintenance is needed on the web server, such as deploying new code or updating the software, the website will be unavailable while the server is offline. To minimize the impact of downtime, it's recommended to schedule maintenance during off-peak hours and to use techniques such as rolling deployments to minimize the impact on users.
+
+Limited scalability: If the website experiences a sudden surge in traffic, the single web server may not be able to handle the load, leading to slow page load times or even server crashes. To scale the infrastructure, it's recommended to use techniques such as horizontal scaling, which involves adding additional servers to handle incoming traffic, or using a content delivery network (CDN) to cache and distribute content globally.
