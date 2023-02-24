@@ -1,33 +1,21 @@
-To address the requirements, we will design a three server web infrastructure that is secure, serves encrypted traffic and is monitored. The infrastructure will consist of:
+# Secured and Monitored Web Infrastructure
 
-Load Balancer: The load balancer is added to distribute incoming traffic across the three web servers to ensure high availability and scalability.
+![Image of a secured and monitored infrastructure](2-secured_and_monitored_web_infrastructure.jpg)
 
-Web Servers: The three web servers will host the website and serve incoming traffic. They are added to ensure redundancy and high availability.
+[Visit Board](https://miro.com/app/board/uXjVOfNFwbY=/)
 
-Firewall: A firewall is added to protect the servers from external threats and unauthorized access.
+## Description
 
-HTTPS: HTTPS is added to encrypt the traffic between the web servers and the user's browser, ensuring data confidentiality and integrity.
+This is a 3-server web infrastructure that is secured, monitored, and serves encrypted traffic.
 
-Monitoring Tool: A monitoring tool is added to monitor the performance and health of the infrastructure.
+## Specifics About This Infrastructure
 
-Logging: Logging is added to track all events and actions on the infrastructure, providing an audit trail for troubleshooting and security purposes.
++ The purpose of the firewalls.<br/>The firewalls are for protecting the network (web servers, anyway) from unwanted and unauthorized users by acting as an intermediary between the internal network and the external network and blocking the incoming traffic matching the aforementioned criteria. 
++ The purpose of the SSL certificate.<br/>The SSL certificate is for encrypting the traffic between the web servers and the external network to prevent man-in-the-middle attacks (MITM) and network sniffers from sniffing the traffic which could expose valuable information. The SSL certs ensure privacy, integrity, and identification.
++ The purpose of the monitoring clients.<br/>The monitoring clients are for monitoring the servers and the external network. They analyse the performance and operations of the servers, measure the overall health, and alert the administrators if the servers are not performing as expected. The monitoring tool observes the servers and provides key metrics about the servers' operations to the administrators. It automatically tests the accessibility of the servers, measures response time, and alerts for errors such as corrupt/missing files, security vulnerabilities/violations, and many other issues. 
 
-The load balancer is configured with a round-robin algorithm to distribute incoming traffic evenly across the web servers. This ensures that no server is overloaded and can handle the incoming traffic efficiently.
+## Issues With This Infrastructure
 
-The load balancer enables an Active-Active setup, where all web servers are active and can receive traffic simultaneously. This ensures high availability and redundancy.
-
-A primary-replica (master-slave) cluster is used for the database. The primary node is responsible for accepting writes, while the replica nodes are responsible for reading data. This ensures data consistency and fault tolerance.
-
-The primary node in the database is responsible for accepting writes from the application server, while the replica nodes are used for read operations.
-
-The issues with this infrastructure are:
-
-Terminating SSL at the load balancer level can be an issue because it increases the risk of man-in-the-middle attacks.
-
-Having only one MySQL server capable of accepting writes can be an issue because it creates a single point of failure.
-
-Having servers with all the same components (database, web server and application server) might be a problem because it increases the risk of all servers being affected by the same vulnerability or bug.
-
-To monitor web server QPS, we can use a monitoring tool that tracks the number of queries per second (QPS) and sends an alert if the threshold is exceeded. We can also monitor the CPU usage and memory usage of the web servers to ensure they are not overloaded.
-
-Overall, this three server web infrastructure provides high availability, scalability, security, and monitoring capabilities.
++ Terminating SSL at the load balancer level would leave the traffic between the load balancer and the web servers unencrypted.
++ Having one MySQL server is an issue because it is not scalable and can act as a single point of failure for the web infrastructure.
++ Having servers with all the same components would make the components contend for resources on the server like CPU, Memory, I/O, etc., which can lead to poor performance and also make it difficult to locate the source of the problem. A setup such as this is not easily scalable. 
