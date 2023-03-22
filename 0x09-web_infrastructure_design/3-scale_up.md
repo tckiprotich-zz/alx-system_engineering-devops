@@ -2,7 +2,7 @@
 
 ![Image of a scaled up web infrastructure](3-scale_up.jpg)
 
-[Visit Board](https://miro.com/app/board/uXjVOfMRh90=/)
+[Visit Board]([https://miro.com/app/board/uXjVOfMRh90=/](https://github.com/tckiprotich/alx-system_engineering-devops/blob/master/0x09-web_infrastructure_design/3-scale_up.jpg))
 
 ## Description
 
