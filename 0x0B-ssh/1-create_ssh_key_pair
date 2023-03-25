@@ -7,5 +7,5 @@
 # Number of bits in the created key to be created 4096
 # The created key must be protected by the passphrase betty
 
-ssh-keygen -t rsa -b 4096 -C "betty" -f ~/.ssh/school -q -N ""
+ssh-keygen -t rsa -b 4096 -f ~/.ssh/school -N betty
 
