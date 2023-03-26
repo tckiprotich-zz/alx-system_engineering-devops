@@ -1,7 +1,11 @@
 #!/bin/bash
 
-# Generate an RSA key pair with 4096 bits, named "school"
-ssh-keygen -b 4096 -t rsa -f ~/.ssh/school
+# Generate RSA key pair
+ssh-keygen -t rsa -b 4096 -f school -N betty
 
-# Protect the key with the passphrase "betty"
-ssh-keygen -p -P "" -N betty -f ~/.ssh/school
+# Check if key pair was successfully created
+if [ $? -eq 0 ]; then
+    echo "RSA key pair created successfully!"
+else
+    echo "Error creating RSA key pair."
+fi
