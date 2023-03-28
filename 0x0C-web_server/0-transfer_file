@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Bash script that transfers a file from our client to a server:
+
+curl -sL "$1" -X PUT -d @"$2" -H "Content-Type: text/plain"
+
