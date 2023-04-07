@@ -1,24 +1,35 @@
 #!/usr/bin/env bash
+# Displays informtation about subdomains.
 
-# Function to display information for a specific subdomain
-display_info() {
-    subdomain=$1
-    domain=$2
-    record_type=$(dig +short $subdomain.$domain | awk '{ print $4 }')
-    destination=$(dig +short $subdomain.$domain)
-    echo "The subdomain $subdomain is a $record_type record and points to $destination"
+# uncomment for debugging purposes.
+#set -x
+
+# for the checker to work please remove the colors.
+
+# colors
+blue='\e[1;34m'
+brown='\e[0;33m'
+reset='\033[0m'
+
+# variables & parameters
+subdomains=( "www" "lb-01" "web-01" "web-02" )
+domain="$1"
+sub="$2"
+
+dig_cmd () {
+	# func variables
+	sub="$2"
+	INFO="$(dig "$sub.$domain" | grep -A1 'ANSWER SECTION:' | awk 'NR==2')"
+	IP=$(echo "$INFO" | awk '{print $5}')
+	RECORD=$(echo "$INFO" | awk '{print $4}')
+
+	echo -e "${brown}The subdomain ${blue}$sub${brown} is a ${blue}$RECORD${brown} record and points to ${blue}$IP${reset}"
 }
 
-# Check if both domain and subdomain parameters are passed
-if [ $# -eq 2 ]; then
-    display_info $2 $1
-else
-    # Default subdomains to audit
-    subdomains=("www" "lb-01" "web-01" "web-02")
-
-    # Loop through subdomains and display information
-    for subdomain in "${subdomains[@]}"
-    do
-        display_info $subdomain $1
-    done
+if [ $# -eq 1 ]; then
+	for subs in "${subdomains[@]}"; do
+		dig_cmd "$domain" "$subs"
+	done
+elif [ $# -eq 2 ]; then
+	dig_cmd "$domain" "$sub"
 fi
