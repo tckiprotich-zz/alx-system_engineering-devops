@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-# script to find out what is stopig nginx from listening on port 80
-
-ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
-service nginx restart
-
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+if systemctl is-active --quiet nginx; then service nginx stop; fi
+service nginx start
+service nginx status
