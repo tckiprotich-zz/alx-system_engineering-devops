@@ -1,9 +1,28 @@
 #!/usr/bin/env bash
-# Install nginx on web server; Nginx should be listening on port 80
 
-sudo apt-get -y update
+# Update package lists and install nginx
+sudo apt-get update
 sudo apt-get -y install nginx
-sudo ufw allow "Nginx HTTP"
-sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
-sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Set up the document root
+sudo mkdir -p /var/www/html
+
+# Set up the default index file
+sudo sh -c "echo 'Hello World!' > /var/www/html/index.html"
+
+# Configure nginx to listen on port 80 and serve the document root
+sudo sh -c "cat > /etc/nginx/sites-available/default <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+    root /var/www/html;
+    index index.html;
+    server_name _;
+    location / {
+        try_files \$uri \$uri/ =404;
+    }
+}
+EOF"
+
+# Restart nginx
 sudo service nginx restart
