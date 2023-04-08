@@ -4,6 +4,11 @@
 
 apt-get update
 apt-get -y install nginx
+
+# chheck if nginx is running and listening on port 80 with netstat
+netstat -tulpn | grep nginx
+
+# allow nginx traffic through the firewall
 ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.html
 service nginx restart
