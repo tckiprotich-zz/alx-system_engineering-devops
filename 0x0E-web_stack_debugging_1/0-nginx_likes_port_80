@@ -1,4 +1,5 @@
+#!/usr/bin/env bash
+# Configures an Nginx server to listen on port 80.
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-if systemctl is-active --quiet nginx; then service nginx stop; fi
 service nginx start
-service nginx status
+kill "$(pgrep 'nginx' | head -1)"
