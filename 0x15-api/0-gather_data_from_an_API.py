@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Returns to-do list information for a given employee ID."""
+"""Returns to-do list about a user from the json place holder api"""
 import requests
 import sys
 
