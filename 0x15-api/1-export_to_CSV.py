@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Exports to-do list information for a given employee ID to CSV format."""
+"""Exports to-do list information to CSV format.
+all data from https://jsonplaceholder.typicode.com
+"""
 import csv
 import requests
 import sys
