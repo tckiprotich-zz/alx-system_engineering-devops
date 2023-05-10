@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """Module to recursively get all hot articles in a subreddit.
 
-This module provides a function that recursively retrieves all the "hot" articles
-in a given subreddit. The function takes a subreddit name as an argument and returns
-a list of article titles. The function uses the Reddit API to make HTTP GET requests
+This module provides a function that recursively retrieves
+ all the "hot" articles
+in a given subreddit. The function takes a subreddit
+name as an argument and returns
+a list of article titles. The function uses
+ the Reddit API to make HTTP GET requests
 and parse JSON responses.
 
 Example:
@@ -11,9 +14,12 @@ Example:
     python recurse.py python
 
 Note:
-    The Reddit API has rate limits. If you make too many requests in a short period
-    of time, you may receive a "429 Too Many Requests" response. To avoid this, you
-    can use a library like `praw` that handles rate limits automatically.
+    The Reddit API has rate limits. If you make
+    too many requests in a short period
+    of time, you may receive a "429 Too Many
+    Requests" response. To avoid this, you
+    can use a library like `praw` that handles
+    rate limits automatically.
 
 """
 import requests
