@@ -1,40 +1,24 @@
 #!/usr/bin/python3
-"""This module provides a function to query the Reddit API and return the number of subscribers of a given subreddit.
-
-Usage:
-    python 0-subs.py subreddit
-
-Example:
-    To get the number of subscribers of the "Python" subreddit, run:
-    python 0-subs.py python
+"""
+Function that queries the Reddit API and returns the number of subscribers
+(not active users, total subscribers) for a given subreddit.
+If an invalid subreddit is given, the function should return 0
 """
 
-"""Module to query the Reddit API and returns the number of subscribers	"""
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):
-    """Function to return the number of subscribers"""
-    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
-    response = requests.get(url, headers=headers, allow_redirects=False)
-    if response.status_code == 200:
-        try:
-            return response.json().get("data").get("subscribers")
-        except AttributeError:
-            # Handle the case when the JSON response doesn't
-            # contain the expected field
-            return 0
+    """
+    Function that queries the Reddit API
+    - If not a valid subreddit, return 0.
+    """
+    req = requests.get(
+        "https://www.reddit.com/r/{}/about.json".format(subreddit),
+        headers={"User-Agent": "Custom"},
+    )
+
+    if req.status_code == 200:
+        return req.json().get("data").get("subscribers")
     else:
-        # Handle the case when the subreddit is invalid or not found
         return 0
-
-
-if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        subreddit = sys.argv[1]
-        subscribers = number_of_subscribers(subreddit)
-        print(f"{subreddit} has {subscribers} subscribers.")
-    else:
-        print("Usage: python 0-subs.py subreddit")
