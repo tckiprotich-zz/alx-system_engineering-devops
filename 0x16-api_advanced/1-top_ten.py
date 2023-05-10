@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module to request top 10 hot posts in a subreddit"""
-import sys
 import requests
+import sys
 
 
 def top_ten(subreddit):
