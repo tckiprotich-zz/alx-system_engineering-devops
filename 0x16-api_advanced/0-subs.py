@@ -1,4 +1,14 @@
 #!/usr/bin/python3
+"""This module provides a function to query the Reddit API and return the number of subscribers of a given subreddit.
+
+Usage:
+    python 0-subs.py subreddit
+
+Example:
+    To get the number of subscribers of the "Python" subreddit, run:
+    python 0-subs.py python
+"""
+
 """Module to query the Reddit API and returns the number of subscribers	"""
 import requests
 import sys
