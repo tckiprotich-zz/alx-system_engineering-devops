@@ -5,7 +5,8 @@ import sys
 
 
 def recurse(subreddit, hot_list=[], after=None):
-    """Function to recursively get all hot articles in a subreddit"""
+    """Function to recursively get all hot articles in a subreddit
+    the subreeddit is passed during runtime"""
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
     params = {'limit': 100, 'after': after}
