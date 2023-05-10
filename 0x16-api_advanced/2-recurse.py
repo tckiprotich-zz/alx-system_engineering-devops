@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """Module to recursively get all hot articles in a subreddit"""
-import sys
 import requests
+import sys
 
 
 def recurse(subreddit, hot_list=[], after=None):
