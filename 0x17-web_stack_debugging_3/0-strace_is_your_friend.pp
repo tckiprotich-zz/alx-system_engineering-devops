@@ -1,20 +1,30 @@
-# This class installs and configures the Apache HTTP server
+# This Puppet manifest installs and configures Apache on Ubuntu 14.04 LTS
 
-class apache {
-  # Install the httpd package
-  package { 'httpd':
-    ensure => installed,
-  }
+# Install Apache package
+package { 'apache2':
+  ensure => installed,
+}
 
-  # Create an index.html file with the 'Hello, world!' content
-  file { '/var/www/html/index.html':
-    ensure  => file,
-    content => 'Hello, world!',
-    owner   => 'apache',
-    group   => 'apache',
-    mode    => '0644',
-  }
+# Configure Apache virtual host
+file { '/etc/apache2/sites-available/my-site.conf':
+  ensure => file,
+  owner  => 'root',
+  group  => 'root',
+  mode   => '0644',
+  content => template('apache/my-site.conf.erb'),
+}
 
-  # Start and enable the httpd service
-  service { 'httpd':
-    ensure => running,
+# Enable and start Apache virtual host
+file { '/etc/apache2/sites-enabled/my-site.conf':
+  ensure => link,
+  target => '/etc/apache2/sites-available/my-site.conf',
+}
+
+# Restart Apache service
+service { 'apache2':
+  ensure    => running,
+  enable    => true,
+  hasrestart => true,
+  hasstatus  => true,
+  subscribe  => File['/etc/apache2/sites-enabled/my-site.conf'],
+}
