@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+"""
+Serve a page with Nginx 
+
+"""
+
+server {
+    listen 80;
+    server_name 34.229.49.141;
+
+    location /airbnb-onepage/ {
+        proxy_pass http://localhost:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+
