@@ -1,3 +1,9 @@
+#!/usr/bin/env bash
+
+"""
+Serve a page with Nginx 
+
+"""
 server {
     listen 80;
     server_name 34.229.49.141;
@@ -9,3 +15,5 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     }
 }
+
+
